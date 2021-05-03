@@ -6,6 +6,7 @@ import com.github.tomakehurst.wiremock.admin.model.ListStubMappingsResult;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -20,6 +21,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,15 +32,30 @@ class ProductsPactTest {
   @Autowired
   private WireMockServer wireMockServer;
 
+  @BeforeAll
+  void clearMappings() {
+    File index = new File("src/test/resources/mappings");
+    String[]entries = index.list();
+    for(String s: entries){
+        File currentFile = new File(index.getPath(),s);
+        currentFile.delete();
+    }
+  }
+
   @AfterAll
   void writeStubsToFile() {
+    // Option 2: Use the Java representation to create a pact file
     PactAdapter adapter = new PactAdapter();
     adapter.writePact(wireMockServer.getAllServeEvents());
 
+    // Option 2: Serialise the wiremock stubs to file, and convert to a Pact file
+    //
     // I think writing to file this way is actually better.
-    // We skip the internal representation and having to interpret behaviour
-    // The downside is that you get the serialised mappings in JSON (so where there are multiple alternatives, they would need to be expanded)
-    // This also means of course that we could also perform the transformation on upload to Pactflow
+    // We skip many of the internal representations and having to interpret behaviour
+    //
+    // The downsides to this are:
+    // 1. You get the serialised mappings in JSON (so where there are multiple alternatives, they would need to be expanded)
+    // 2. This also means of course that we could also perform the transformation on upload to Pactflow
     wireMockServer.saveMappings();
   }
 
