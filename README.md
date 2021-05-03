@@ -11,14 +11,23 @@ It is using a public tenant on Pactflow, which you can access [here](https://tes
 See the canonical consumer example here: https://github.com/pactflow/example-consumer
 See also the full [Pactflow CI/CD Workshop](https://docs.pactflow.io/docs/workshops/ci-cd) for which this can be substituted in as the "consumer".
 
+## Bi-directional provider
+
+This project is currently compatible with the JS provider: https://github.com/pactflow/example-bi-directional-contracts-provider
 ## Pre-requisites
 
 **Software**:
 
-https://docs.pactflow.io/docs/workshops/ci-cd/set-up-ci/prerequisites/
+* Tools listed at: https://docs.pactflow.io/docs/workshops/ci-cd/set-up-ci/prerequisites/
+* A pactflow.io account with an valid [API token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token)
+#### Environment variables
 
-## Usage
+To be able to run some of the commands locally, you will need to export the following environment variables into your shell:
 
-```sh
-make test
-```
+* `PACT_BROKER_TOKEN`: a valid [API token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token) for Pactflow
+* `PACT_BROKER_BASE_URL`: a fully qualified domain name with protocol to your pact broker e.g. https://testdemo.pactflow.io
+
+### Usage
+
+* `make test` - run the tests locally
+* `make fake_ci` - run the CI process locally
