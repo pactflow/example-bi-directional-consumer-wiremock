@@ -64,7 +64,7 @@ class ProductsPactTest {
   void getProduct() throws IOException {
 
     wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/product/10")).willReturn(
-        aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody("{ \"name\": \"pizza\", \"id\": 10, \"type\": \"food\" }")));
+        aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody("{ \"name\": \"pizza\", \"id\": \"10\", \"type\": \"food\" }")));
 
     Product product = new ProductClient().setUrl(wireMockServer.baseUrl()).getProduct("10");
     assertThat(product.getId(), is("10"));
@@ -77,7 +77,7 @@ class ProductsPactTest {
     wireMockServer.stubFor(WireMock.post(WireMock.urlEqualTo("/products")).withRequestBody(equalToJson(productJson, true, true)).withHeader("Content-Type", new ContainsPattern("application/json")).willReturn(
         aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody(productJson)));
 
-    Product product = new ProductClient().setUrl(wireMockServer.baseUrl()).createProduct(new Product("27", "pizza", "food"));
+    Product product = new ProductClient().setUrl(wireMockServer.baseUrl()).createProduct(new Product("27", "pizza", "food", 27.0));
     assertThat(product.getId(), is("27"));
   }
 
@@ -85,7 +85,7 @@ class ProductsPactTest {
   void getProducts() throws IOException {
 
     wireMockServer.stubFor(WireMock.get(WireMock.urlEqualTo("/products")).willReturn(
-        aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody("[{ \"name\": \"pizza\", \"id\": 10, \"type\": \"food\" }]")));
+        aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody("[{ \"name\": \"pizza\", \"id\": \"10\", \"type\": \"food\", \"price\":  100 }]")));
 
     List<Product> products = new ProductClient().setUrl(wireMockServer.baseUrl()).getProducts();
     assertThat(products.get(0).getId(), is("10"));

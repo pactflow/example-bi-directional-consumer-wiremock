@@ -1,6 +1,6 @@
 # Example Java Wiremock Consumer
 
-[![Build Status](https://travis-ci.com/pactflow/example-consumer-wiremock.svg?branch=master)](https://travis-ci.com/pactflow/example-consumer-wiremock)
+[![Build Status](https://travis-ci.com/pactflow/pactflow-example-consumer-wiremock.svg?branch=master)](https://travis-ci.com/pactflow/pactflow-example-consumer-wiremock)
 
 This is an example of a Java consumer that uses Wiremock (with Junit5), [Pactflow](https://pactflow.io) and Travis CI to ensure that it is compatible with the expectations its consumers have of it.
 

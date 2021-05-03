@@ -2,7 +2,6 @@ package com.example.products;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -74,5 +73,4 @@ public class ProductClient {
         throw new IOException(e);
       }
   }
-  // private Product toProduct() {}
 }

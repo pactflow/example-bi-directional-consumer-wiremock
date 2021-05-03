@@ -51,7 +51,7 @@ public class PactAdapter {
         pact.interactions.add(interaction);
       }
 
-      pact.consumer = new Pacticipant("example-wiremock-consumer");
+      pact.consumer = new Pacticipant("pactflow-example-consumer-wiremock");
       pact.provider = new Pacticipant("collaborative-contracts-provider");
 
       File dir = new File("build/pacts");
