@@ -1,8 +1,6 @@
 package com.example.products.pactutils;
 
-import com.github.tomakehurst.wiremock.admin.model.ListStubMappingsResult;
 import com.github.tomakehurst.wiremock.stubbing.ServeEvent;
-import com.github.tomakehurst.wiremock.stubbing.StubMapping;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +25,7 @@ public class PactAdapter {
         interaction.request.setPath(e.getRequest().getUrl());
 
         if (e.getStubMapping().getRequest().getHeaders() != null) {
+          System.out.println("Headers" + e.getRequest().getHeaders());
           interaction.request.headers = new HashMap<>();
           e.getStubMapping().getRequest().getHeaders().forEach((h, v) -> {
             interaction.request.headers.put(h.toString(), v.getExpected());
@@ -34,7 +33,6 @@ public class PactAdapter {
         }
 
         if (e.getRequest().getBodyAsString() != null && e.getRequest().getBody().length > 0) {
-          System.out.println("Requestbody" + e.getRequest().getBodyAsString());
           interaction.request.setBody(e.getRequest().getBodyAsString());
         }
 
@@ -47,16 +45,20 @@ public class PactAdapter {
         }
         interaction.response.setStatus(e.getStubMapping().getResponse().getStatus());
         if (e.getStubMapping().getResponse().specifiesBodyContent()) {
-          System.out.println(e.getStubMapping().getResponse().getBody());
           interaction.response.setBody(e.getStubMapping().getResponse().getBody());
         }
 
         pact.interactions.add(interaction);
       }
 
-      pact.consumer = "cons";
-      pact.provider = "prov";
-      mapper.writeValue(new File("/tmp/test.json"), pact);
+      pact.consumer = new Pacticipant("example-wiremock-consumer");
+      pact.provider = new Pacticipant("collaborative-contracts-provider");
+
+      File dir = new File("build/pacts");
+      if (!dir.exists()) {
+        dir.mkdir();
+      }
+      mapper.writeValue(new File("build/pacts/"+pact.consumer + "-" + pact.provider + ".json"), pact);
 
     } catch (IOException e) {
         e.printStackTrace();

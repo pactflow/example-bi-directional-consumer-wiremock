@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import com.github.tomakehurst.wiremock.matching.ContainsPattern;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
@@ -73,7 +74,7 @@ class ProductsPactTest {
   void createProduct() throws IOException {
 
     String productJson = "{ \"id\": \"27\", \"name\": \"pizza\", \"type\": \"food\" }";
-    wireMockServer.stubFor(WireMock.post(WireMock.urlEqualTo("/products")).withRequestBody(equalToJson(productJson, true, true)).willReturn(
+    wireMockServer.stubFor(WireMock.post(WireMock.urlEqualTo("/products")).withRequestBody(equalToJson(productJson, true, true)).withHeader("Content-Type", new ContainsPattern("application/json")).willReturn(
         aResponse().withHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE).withBody(productJson)));
 
     Product product = new ProductClient().setUrl(wireMockServer.baseUrl()).createProduct(new Product("27", "pizza", "food"));

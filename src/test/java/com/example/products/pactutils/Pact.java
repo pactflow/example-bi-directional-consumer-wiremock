@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 @JsonInclude(value = Include.NON_NULL)
 public class Pact {
-  public String consumer;
-  public String provider;
+  public Pacticipant consumer;
+  public Pacticipant provider;
   public List<Interaction> interactions = new ArrayList<>();
   public Metadata metadata = new Metadata();
 }
