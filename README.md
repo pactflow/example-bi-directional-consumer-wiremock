@@ -13,7 +13,11 @@ See also the full [Pactflow CI/CD Workshop](https://docs.pactflow.io/docs/worksh
 
 ## Bi-directional provider
 
-This project is currently compatible with the JS provider: https://github.com/pactflow/example-bi-directional-contracts-provider
+This project is currently compatible with the following providers:
+
+* Java Springboot tested via RestAssured: https://github.com/pactflow/example-provider-restassured
+* JS express tested via Dredd: https://github.com/pactflow/example-bi-directional-contracts-provider
+
 ## Pre-requisites
 
 **Software**:
@@ -26,6 +30,7 @@ To be able to run some of the commands locally, you will need to export the foll
 
 * `PACT_BROKER_TOKEN`: a valid [API token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token) for Pactflow
 * `PACT_BROKER_BASE_URL`: a fully qualified domain name with protocol to your pact broker e.g. https://testdemo.pactflow.io
+* `PACT_PROVIDER`: You can use this to override the name of the provider you want to test for this. It defaults to `pactflow-example-provider-restassured` for compatibility with the [Java RestAssured](https://github.com/pactflow/example-provider-restassured) provider
 
 ### Usage
 

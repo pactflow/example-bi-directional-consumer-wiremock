@@ -11,7 +11,6 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PactAdapter {
-  // public void writePact(ListStubMappingsResult stubs) {
   public void writePact(List<ServeEvent> events) {
     ObjectMapper mapper = new ObjectMapper();
     Pact pact = new Pact();
@@ -52,7 +51,8 @@ public class PactAdapter {
       }
 
       pact.consumer = new Pacticipant("pactflow-example-consumer-wiremock");
-      pact.provider = new Pacticipant("collaborative-contracts-provider");
+      String provider = System.getenv().getOrDefault("PACT_PROVIDER", "pactflow-example-provider-restassured");
+      pact.provider = new Pacticipant(provider);
 
       File dir = new File("build/pacts");
       if (!dir.exists()) {
