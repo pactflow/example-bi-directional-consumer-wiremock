@@ -33,16 +33,6 @@ class ProductsPactTest {
   @Autowired
   private WireMockServer wireMockServer;
 
-  @BeforeAll
-  void clearMappings() {
-    File index = new File("src/test/resources/mappings");
-    String[]entries = index.list();
-    for(String s: entries){
-        File currentFile = new File(index.getPath(),s);
-        currentFile.delete();
-    }
-  }
-
   @AfterAll
   void writeStubsToFile() {
     // Option 2: Use the Java representation to create a pact file
@@ -57,7 +47,7 @@ class ProductsPactTest {
     // The downsides to this are:
     // 1. You get the serialised mappings in JSON (so where there are multiple alternatives, they would need to be expanded)
     // 2. This also means of course that we could also perform the transformation on upload to Pactflow
-    wireMockServer.saveMappings();
+    // wireMockServer.saveMappings();
   }
 
   @Test
