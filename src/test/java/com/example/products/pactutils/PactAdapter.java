@@ -58,7 +58,7 @@ public class PactAdapter {
       if (!dir.exists()) {
         dir.mkdir();
       }
-      mapper.writeValue(new File("build/pacts/"+pact.consumer + "-" + pact.provider + ".json"), pact);
+      mapper.writeValue(new File("build/pacts/" + pact.consumer.getName() + "-" + pact.provider.getName() + ".json"), pact);
 
     } catch (IOException e) {
         e.printStackTrace();
