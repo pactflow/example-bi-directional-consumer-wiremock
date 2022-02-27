@@ -22,6 +22,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "org.apache.httpcomponents:fluent-hc:4.5.5"
 	testCompile "com.github.tomakehurst:wiremock-jre8:2.27.2"
+	testCompile 'com.atlassian.ta:wiremock-pact-generator:2.4.3'
 
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
