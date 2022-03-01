@@ -1,12 +1,9 @@
 package com.example.products;
 
 import com.atlassian.ta.wiremockpactgenerator.WireMockPactGenerator;
-import com.example.products.pactutils.PactAdapter;
 import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.admin.model.ListStubMappingsResult;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -23,7 +20,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
