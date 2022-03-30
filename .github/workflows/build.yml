@@ -31,8 +31,6 @@ jobs:
         with:
           distribution: 'zulu' 
           java-version: '11'
-      - name: Install for ${{ matrix.pact_provider }}
-        run: npm i
       - name: Test for ${{ matrix.pact_provider }}
         run: make test
         env:
