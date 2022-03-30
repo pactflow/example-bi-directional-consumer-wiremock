@@ -32,7 +32,11 @@ jobs:
           distribution: 'zulu' 
           java-version: '11'
       - name: Test for ${{ matrix.pact_provider }}
-        run: GIT_BRANCH=${GIT_REF:11} make ci
+        run: make test
+        env:
+          PACT_PROVIDER: ${{ matrix.pact_provider }}
+      - name: Publish pacts
+        run: GIT_BRANCH=${GIT_REF:11} make publish_pacts
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
