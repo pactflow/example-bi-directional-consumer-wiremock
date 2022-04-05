@@ -1,8 +1,8 @@
 # Example Java Wiremock Consumer
 
-![Build](https://github.com/pactflow/example-consumer-wiremock/workflows/Build/badge.svg)
+![Build](https://github.com/pactflow/example-bi-directional-consumer-wiremock/workflows/Build/badge.svg)
 
-[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/pactflow-example-consumer-wiremock/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/pactflow-example-consumer-wiremock/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
+[![Can I deploy Status](https://testdemo.pactflow.io/pacticipants/pactflow-example-bi-directional-consumer-wiremock/branches/master/latest-version/can-i-deploy/to-environment/production/badge)](https://testdemo.pactflow.io/pacticipants/pactflow-example-bi-directional-consumer-wiremock/branches/master/latest-version/can-i-deploy/to-environment/production/badge)
 
 This is an example of a Java consumer that uses Wiremock (with Junit5), [Pactflow](https://pactflow.io) and GitHub Actions to ensure that it is compatible with the expectations its consumers have of it.
 
@@ -17,7 +17,7 @@ See also the full [Pactflow CI/CD Workshop](https://docs.pactflow.io/docs/worksh
 
 This project is currently compatible with the following providers:
 
-* Java Springboot tested via RestAssured: https://github.com/pactflow/example-provider-restassured
+* Java Springboot tested via RestAssured: https://github.com/pactflow/example-bi-directional-provider-restassured
 * JS express tested via Dredd: https://github.com/pactflow/example-bi-directional-contracts-provider
 
 ## Pre-requisites
@@ -32,7 +32,7 @@ To be able to run some of the commands locally, you will need to export the foll
 
 * `PACT_BROKER_TOKEN`: a valid [API token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token) for Pactflow
 * `PACT_BROKER_BASE_URL`: a fully qualified domain name with protocol to your pact broker e.g. https://testdemo.pactflow.io
-* `PACT_PROVIDER`: You can use this to override the name of the provider you want to test for this. It defaults to `pactflow-example-provider-restassured` for compatibility with the [Java RestAssured](https://github.com/pactflow/example-provider-restassured) provider
+* `PACT_PROVIDER`: You can use this to override the name of the provider you want to test for this. It defaults to `pactflow-example-bi-directional-provider-restassured` for compatibility with the [Java RestAssured](https://github.com/pactflow/example-bi-directional-provider-restassured) provider
 
 ### Usage
 

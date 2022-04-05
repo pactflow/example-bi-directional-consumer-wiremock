@@ -32,11 +32,11 @@ class ProductApiClientTest {
 
   @BeforeAll
   void configureWiremockPactGenerator() {
-    String provider = System.getenv().getOrDefault("PACT_PROVIDER", "pactflow-example-provider-restassured");
+    String provider = System.getenv().getOrDefault("PACT_PROVIDER", "pactflow-example-bi-directional-provider-restassured");
 
     wireMockServer.addMockServiceRequestListener(
         WireMockPactGenerator
-            .builder("pactflow-example-consumer-wiremock", provider)
+            .builder("pactflow-example-bi-directional-consumer-wiremock", provider)
             .build());
   }
 
