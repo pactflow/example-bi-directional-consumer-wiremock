@@ -1,6 +1,6 @@
 # Default to the read only token - the read/write token will be present on Travis CI.
 # It's set as a secure environment variable in the .travis.yml file
-PACTICIPANT := "pactflow-example-consumer-wiremock"
+PACTICIPANT := "pactflow-example-bi-directional-consumer-wiremock"
 GITHUB_WEBHOOK_UUID := "654aff47-0269-4b9f-aaca-2f83ff3cd772"
 PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
 
@@ -81,7 +81,7 @@ create_github_token_secret:
 create_or_update_github_webhook:
 	@"${PACT_CLI}" \
 	  broker create-or-update-webhook \
-	  'https://api.github.com/repos/pactflow/example-consumer-wiremock/statuses/$${pactbroker.consumerVersionNumber}' \
+	  'https://api.github.com/repos/pactflow/example-bi-directional-consumer-wiremock/statuses/$${pactbroker.consumerVersionNumber}' \
 	  --header 'Content-Type: application/json' 'Accept: application/vnd.github.v3+json' 'Authorization: token $${user.githubCommitStatusToken}' \
 	  --request POST \
 	  --data @${PWD}/pactflow/github-commit-status-webhook.json \
