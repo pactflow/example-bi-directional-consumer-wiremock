@@ -1,75 +1,76 @@
 package com.example.products;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.ContentType;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.util.List;
-
+@Service
 public class ProductClient {
-  private String url;
+  private final String url;
 
-  public ProductClient setUrl(String url) {
+  public ProductClient(@Value("${basepath}") final String url) {
     this.url = url;
-
-    return this;
   }
 
-  public Product createProduct(Product p) throws IOException {
-    return (Product) Request.Post(this.url + "/products")
+  public Product createProduct(final Product p) throws IOException {
+    return Request.Post(this.url + "/products")
       .addHeader("Accept", "application/json")
       .bodyString(this.toString(p), ContentType.APPLICATION_JSON)
       .execute().handleResponse(httpResponse -> {
         try {
-          ObjectMapper mapper = new ObjectMapper();
-          Product product = mapper.readValue(httpResponse.getEntity().getContent(), Product.class);
+          final ObjectMapper mapper = new ObjectMapper();
+          final Product product = mapper.readValue(httpResponse.getEntity().getContent(), Product.class);
 
           return product;
-        } catch (JsonMappingException e) {
+        } catch (final JsonMappingException e) {
           throw new IOException(e);
         }
       });
   }
 
-  public Product getProduct(String id) throws IOException {
-    return (Product) Request.Get(this.url + "/product/" + id)
+  public Product getProduct(final String id) throws IOException {
+    return Request.Get(this.url + "/product/" + id)
       .addHeader("Accept", "application/json")
       .execute().handleResponse(httpResponse -> {
         try {
-          ObjectMapper mapper = new ObjectMapper();
-          Product product = mapper.readValue(httpResponse.getEntity().getContent(), Product.class);
+          final ObjectMapper mapper = new ObjectMapper();
+          final Product product = mapper.readValue(httpResponse.getEntity().getContent(), Product.class);
 
           return product;
-        } catch (JsonMappingException e) {
+        } catch (final JsonMappingException e) {
           throw new IOException(e);
         }
       });
   }
 
   public List<Product> getProducts() throws IOException {
-    return (List<Product>) Request.Get(this.url + "/products")
+    return Request.Get(this.url + "/products")
       .addHeader("Accept", "application/json")
       .execute().handleResponse(httpResponse -> {
         try {
-          ObjectMapper mapper = new ObjectMapper();
-          List<Product> products = mapper.readValue(httpResponse.getEntity().getContent(), new TypeReference<List<Product>>(){});
+          final ObjectMapper mapper = new ObjectMapper();
+          final List<Product> products = mapper.readValue(httpResponse.getEntity().getContent(), new TypeReference<List<Product>>(){});
 
           return products;
-        } catch (JsonMappingException e) {
+        } catch (final JsonMappingException e) {
           throw new IOException(e);
         }
       });
     }
 
-    private String toString(Product p) throws IOException {
+    private String toString(final Product p) throws IOException {
       try {
-        ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(p);
-      } catch (JsonMappingException e) {
+      } catch (final JsonMappingException e) {
         throw new IOException(e);
       }
   }
