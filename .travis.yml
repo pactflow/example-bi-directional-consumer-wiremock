@@ -2,7 +2,7 @@ language: java
 install: true
 os: linux
 jdk:
-- openjdk21
+- openjdk17
 script:
 - make ci
 env:
