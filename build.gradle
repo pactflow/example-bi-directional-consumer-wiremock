@@ -1,12 +1,12 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.5.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'org.springframework.boot' version '3.3.4'
+	id 'io.spring.dependency-management' version '1.1.6'
 	id 'java'
 }
 
 group = 'au.com.pactflow'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -20,9 +20,9 @@ configurations {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation "org.apache.httpcomponents:fluent-hc:4.5.5"
-	testCompile "com.github.tomakehurst:wiremock-jre8:2.27.2"
-	testCompile 'com.atlassian.ta:wiremock-pact-generator:2.4.3'
+	implementation "org.apache.httpcomponents:fluent-hc:4.5.14"
+	testImplementation 'org.wiremock:wiremock-standalone:3.9.1'
+	testImplementation 'com.atlassian.ta:wiremock-pact-generator:2.5.0'
 
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
