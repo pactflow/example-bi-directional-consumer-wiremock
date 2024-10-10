@@ -35,7 +35,7 @@ It performs pre-deployment cross-compatibility checks to ensure that it is compa
 
 See the full [PactFlow Bi-Directional Workshop](https://docs.pactflow.io/docs/workshops/bi-directional-contract-testing) for which this can be substituted in as the "consumer".
 
-More documentation available in GitHub repo of the [WireMock Pact tool](https://github.com/tomasbjerre/wiremock-pact) used in this example.
+More documentation available in GitHub repo of the [WireMock Pact tool](https://github.com/wiremock/wiremock-pact) used in this example.
 
 ## Overview of Part of Bi-Directional Contract Testing Flow
 
