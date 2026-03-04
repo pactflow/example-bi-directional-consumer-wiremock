@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 
@@ -20,7 +19,6 @@ import com.github.tomakehurst.wiremock.matching.ContainsPattern;
 import com.maciejwalkowiak.wiremock.spring.InjectWireMock;
 
 @SpringBootTest
-@AutoConfigureMockMvc
 class ProductApiClientTest extends WireMockPactBaseTest {
     @InjectWireMock("wiremock-service-name")
     private WireMockServer wiremock;
